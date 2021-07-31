@@ -20,7 +20,7 @@ public class CategoriaUsuarioController {
     }
 
     @PostMapping
-    public CategoriaUsuario createCategoriaUsuario(CategoriaUsuario categoriaUsuario) {
+    public CategoriaUsuario createCategoriaUsuario(@RequestBody CategoriaUsuario categoriaUsuario) {
         return categoriaUsuarioService.save(categoriaUsuario);
     }
 
@@ -35,17 +35,18 @@ public class CategoriaUsuarioController {
     }
 
     @PutMapping
-    public CategoriaUsuario updateCategoriaUsuario(CategoriaUsuario categoriaUsuario) {
+    public CategoriaUsuario updateCategoriaUsuario(@RequestBody CategoriaUsuario categoriaUsuario) {
         return categoriaUsuarioService.update(categoriaUsuario);
     }
 
+    @DeleteMapping("/{id}")
     public ResponseEntity<CategoriaUsuario> deleteCategoriaUsuarioById(@PathVariable("id") Long id) {
         try {
             categoriaUsuarioService.delete(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return (ResponseEntity<CategoriaUsuario>) ResponseEntity.status(500);
+            return ResponseEntity.notFound().build();
         }
-        return (ResponseEntity<CategoriaUsuario>) ResponseEntity.ok();
+        return ResponseEntity.ok().build();
     }
 }

@@ -31,17 +31,18 @@ public class JornadaTrabalhoController {
     }
 
     @PutMapping
-    public JornadaTrabalho updateJornadaTrabalho(JornadaTrabalho jornadaTrabalho) {
+    public JornadaTrabalho updateJornadaTrabalho(@RequestBody JornadaTrabalho jornadaTrabalho) {
         return jornadaTrabalhoService.update(jornadaTrabalho);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteJornadaTrabalhoById(@PathVariable("id") long id) {
+    public ResponseEntity<JornadaTrabalho> deleteJornadaTrabalhoById(@PathVariable("id") long id) {
         try {
             jornadaTrabalhoService.delete(id);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            ResponseEntity.notFound().build();
         }
-        return (ResponseEntity) ResponseEntity.ok();
+        return ResponseEntity.ok().build();
     }
 }

@@ -1,0 +1,9 @@
+package com.dio.ponto_acesso.repository;
+
+import com.dio.ponto_acesso.model.NivelAcesso;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface NivelAcessoInterface extends JpaRepository<NivelAcesso, Long> {
+}
